@@ -1,0 +1,28 @@
+import "google/protobuf/empty.proto";
+syntax = "proto3";
+package user;
+
+service UserService {
+  rpc GetUserById(UserById) returns (FindOneResponse) {};
+  rpc GetAllUsers(google.protobuf.Empty) returns (UserList) {};
+}
+message UserById {
+  string id = 1;
+}
+
+message UserList {
+  repeated User users = 1;
+}
+message User {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  int32 phone = 4;
+  string email = 5;
+}
+
+message FindOneResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  User data = 3;
+}
